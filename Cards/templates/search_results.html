@@ -1,0 +1,22 @@
+{% extends './base2.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<center>
+    <h2>Showing Results for "{{ query }}"</h2>
+        <ul>
+            {% for result in results %}
+                <li> <a href ="{% url 'add_student_page' %}" >
+                    {{ result.student_name }} 
+                    {{ result.gender }} {{ result.course }} {{ result.date_of_birth }} 
+                    {{ result.address }} {{ result.telephone_no }} 
+                    {{ result.nationality }}</a></li>
+            {% empty %}
+                <li>No results found.</li>
+            {% endfor %}
+        </ul>
+</center>
+
+
+{% endblock %}
