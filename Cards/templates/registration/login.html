@@ -13,9 +13,9 @@
  
   <div class="wrapper">
     <div class="form-wrapper sign-in">
-      <form action="">
+      <form>
         <h2>Login</h2>
-        <div class="input-group">
+        <!-- <div class="input-group">
           <input type="text" required>
           <label for="">Username</label>
         </div>
@@ -25,8 +25,10 @@
         </div>
         <div class="remember">
           <label><input type="checkbox"> Remember me</label>
-        </div>
-        <a href="{% url 'index_page' %}"button type="submit">Login</button></a>
+        </div> -->
+        {% csrf_token %}
+        {{form}}
+        <a href="{% url 'index_page' %}"><button type="submit">Login</button></a>
         <div class="signUp-link">
           <p>Don't have an account? <a href="{% url 'sign_up_page' %}" class="signUpBtn-link">Sign Up Here!</a></p>
         </div>

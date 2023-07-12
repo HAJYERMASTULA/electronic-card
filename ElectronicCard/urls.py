@@ -23,13 +23,11 @@ from Cards.views import index_view, add_feesstructure_view, add_tuitionpayment_v
 
 
 urlpatterns = [
-    path('',login_view,name='login'),
-    path('login/',login_view, name='login'),
     path('admin/', admin.site.urls),
     path('profile/', profile, name='profile_page'),
     path('sign_up/',sign_up_view, name = "sign_up_page"),
     path('accounts/', include("django.contrib.auth.urls")),
-    path('index/', index_view, name = 'index_page'),
+    path('', index_view, name = 'index_page'),
     path('add_course/', add_course_view, name= "add_course_page" ),
     path('add_student/', add_student_view, name = 'add_student_page'),
     path('add_feesstructure/', add_feesstructure_view, name = 'add_feesstructure_page'),

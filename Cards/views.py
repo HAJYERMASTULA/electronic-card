@@ -19,7 +19,7 @@ import sqlite3
 
 @login_required
 def index_view(request):
-    return render(request, 'base2.html')
+    return render(request, 'dashboard1.html')
 
 @login_required
 def add_course_view(request): 
