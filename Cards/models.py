@@ -62,7 +62,7 @@ class FeesStructure(models.Model):
     functional_fees = models.IntegerField(null = True, blank = True)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
     def __int__(self):
-        return self.functional_fees
+        return self.course
     
 
 

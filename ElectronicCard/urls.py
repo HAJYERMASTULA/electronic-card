@@ -19,15 +19,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from Cards.views import index_view, add_feesstructure_view, add_tuitionpayment_view, edit_tuitionpayment_view, edit_feesstructure_view, edit_student_view, add_student_view, add_course_view, edit_course_view, edit_card_view, add_card_view, add_clearance_view, edit_clearance_view, delete_tuitionpayment_view, delete_feesstructure_view, sign_up_view, delete_card_view, delete_clearance_view, delete_course_view, delete_student_view, student_pdf_view, clearance_pdf_view, profile, search_views
+from Cards.views import index_view, add_feesstructure_view, add_tuitionpayment_view, edit_tuitionpayment_view, edit_feesstructure_view, edit_student_view, add_student_view, add_course_view, edit_course_view, edit_card_view, add_card_view, add_clearance_view, edit_clearance_view, delete_tuitionpayment_view, delete_feesstructure_view, sign_up_view, delete_card_view, delete_clearance_view, delete_course_view, delete_student_view, student_pdf_view, clearance_pdf_view, profile, search_views,login_view
 
 
 urlpatterns = [
+    path('',login_view,name='login'),
+    path('login/',login_view, name='login'),
     path('admin/', admin.site.urls),
     path('profile/', profile, name='profile_page'),
     path('sign_up/',sign_up_view, name = "sign_up_page"),
     path('accounts/', include("django.contrib.auth.urls")),
-    path('', index_view, name = 'index_page'),
+    path('index/', index_view, name = 'index_page'),
     path('add_course/', add_course_view, name= "add_course_page" ),
     path('add_student/', add_student_view, name = 'add_student_page'),
     path('add_feesstructure/', add_feesstructure_view, name = 'add_feesstructure_page'),
@@ -40,7 +42,7 @@ urlpatterns = [
     path('edit_clearance/<int:clearance_id>/', edit_clearance_view, name="edit_clearance_page"),
     path('edit_tuitionpayment/<int:tuitionpayment_id>/', edit_tuitionpayment_view, name = "edit_tuitionpayment_page"),
     path('edit_card/<int:card_id>/', edit_card_view, name="edit_card_page"),
-    path('delete_feestructure/<int:feestructure_id>/',delete_feesstructure_view, name="delete_feesstructure_page"),
+    path('delete_feestructure/<int:feesstructure_id>/',delete_feesstructure_view, name="delete_feesstructure_page"),
     path('delete_tuitionpayment/<int:tuitionpayment_id>/', delete_tuitionpayment_view, name="delete_tuitionpayment_page"),
     path('delete_card/<int:card_id>/', delete_card_view, name="delete_card_page"),
     path('delete_clearance/<int:clearance_id>/', delete_clearance_view, name="delete_clearance_page"),
