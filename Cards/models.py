@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 
 
 
+
 class Course(models.Model):
     course_name = models.CharField(max_length=20)
     faculty = models.CharField(max_length=50)
