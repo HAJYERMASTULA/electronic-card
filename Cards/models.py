@@ -73,7 +73,7 @@ class TuitionPayment(models.Model):
     payment_date = models.DateField(auto_now = False)
     student = models.ForeignKey(Student, on_delete = models.CASCADE)
     def __str__(self):
-        return self.student
+        return self.fees_structure
 
 class Card(models.Model):
     STATUS = [

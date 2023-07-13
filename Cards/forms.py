@@ -23,7 +23,7 @@ class TuitionPaymentForm(ModelForm):
         model = TuitionPayment
         fields = ("fees_structure", "amount_paid", "payment_date", "student")
         
-        widget = {"payment_date": DateInput(attrs={"type":"date"})
+        widget = {'payment_date':forms.DateInput(attrs={'type':'date'})
         
         }
 
