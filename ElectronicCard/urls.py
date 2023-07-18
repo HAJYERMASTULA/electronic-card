@@ -17,12 +17,23 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from Cards import views
+
+from rest_framework import routers
 
 
-from Cards.views import index_view, add_feesstructure_view, add_tuitionpayment_view, edit_tuitionpayment_view, edit_feesstructure_view, edit_student_view, add_student_view, add_course_view, edit_course_view, edit_card_view, add_card_view, add_clearance_view, edit_clearance_view, delete_tuitionpayment_view, delete_feesstructure_view, sign_up_view, delete_card_view, delete_clearance_view, delete_course_view, delete_student_view, student_pdf_view, clearance_pdf_view, profile, search_views,login_view
+#router = routers.DefaultRouter()
+#router.register(r'users', views.UserViewSet)
+
+
+from Cards.views import  index_view, add_feesstructure_view, add_tuitionpayment_view, edit_tuitionpayment_view, edit_feesstructure_view, edit_student_view, add_student_view, add_course_view, edit_course_view, edit_card_view, add_card_view, add_clearance_view, edit_clearance_view, delete_tuitionpayment_view, delete_feesstructure_view, sign_up_view, delete_card_view, delete_clearance_view, delete_course_view, delete_student_view, student_pdf_view, clearance_pdf_view, profile, search_views,login_view
 
 
 urlpatterns = [
+    path('', include('Api.urls')),
+    #path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    #path('students/<str:barcode>/', student_details),
+    path('card/display',views.display,name='display'),
     path('admin/', admin.site.urls),
     path('profile/', profile, name='profile_page'),
     path('sign_up/',sign_up_view, name = "sign_up_page"),

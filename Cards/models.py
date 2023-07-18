@@ -9,10 +9,16 @@ from django.contrib.auth.models import User
 
 
 class Course(models.Model):
+    YEAR = [
+        ("1", "1yr"),
+        ("2", "2yr"),
+        ("3", "3yr"),
+        ("4", "4yr"),
+    ]
     course_name = models.CharField(max_length=20)
     faculty = models.CharField(max_length=50)
     course_code = models.CharField(max_length=20)
-    duration = models.CharField(max_length=20)
+    duration = models.CharField(max_length=20,choices = YEAR)
     def __str__(self):
         return self.course_name
 
@@ -62,8 +68,8 @@ class FeesStructure(models.Model):
     semester = models.CharField(max_length = 3, choices = SEMESTER)
     functional_fees = models.IntegerField(null = True, blank = True)
     course = models.ForeignKey(Course, on_delete = models.CASCADE)
-    def __int__(self):
-        return self.course
+    def __str__(self):
+        return self.semester
     
 
 
@@ -83,17 +89,22 @@ class Card(models.Model):
     ]
     student = models.ForeignKey(Student, on_delete = models.CASCADE)
     cardno =models.CharField(max_length=12, default="",unique=True)
-    barcode = models.ImageField(upload_to='barcodes/',blank=True)
+    #barcode = models.ImageField(upload_to='barcodes/',blank=True)
+    barcode = models.ImageField(upload_to='images/',blank=True)
     status = models.CharField(max_length = 15, choices = STATUS)
     def __str__(self): 
-        return self.status
+        return self.cardno
+    
+    #class Meta:
+       # db_table='card'
+    
     
     def save(self,*args,**kwargs):
         EAN = barcode.get_barcode_class('ean13')
         buffer = BytesIO()
         ean = EAN(f'{self.cardno}{self.student}{self.status}', writer=ImageWriter())
         ean.write(buffer)
-        self.barcode.save(f'{self.cardno}.png',File(buffer), save=False)
+        self.barcode.save(f'{self.cardno}.png{self.student}{self.status}',File(buffer), save=False)
         return super().save(*args, **kwargs)
 
 

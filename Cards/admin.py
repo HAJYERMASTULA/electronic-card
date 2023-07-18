@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Student, FeesStructure, TuitionPayment, Card, Clearance,Course
+from .models import Student, FeesStructure, TuitionPayment, Card, Clearance, Course
 
 class StudentAdmin(admin.ModelAdmin):
     list_display = ("student_name","gender","course","session","date_of_birth","address","religion","telephone_no","nationality","marital_status")
@@ -19,7 +19,7 @@ class TuitionPaymentAdmin(admin.ModelAdmin):
 admin.site.register(TuitionPayment, TuitionPaymentAdmin)
 
 class CardAdmin(admin.ModelAdmin):
-    list_display = ("student","status")
+    list_display = ("cardno","barcode","student","status")
 
 admin.site.register(Card,CardAdmin)
 
@@ -29,6 +29,6 @@ class ClearanceAdmin(admin.ModelAdmin):
 admin.site.register(Clearance, ClearanceAdmin)
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display=("course_name","faculty","course_code","duration")
+    list_display = ("course_name","faculty","course_code","duration")
+admin.site.register(Course, CourseAdmin)
 
-admin.site.register(Course, CourseAdmin)    

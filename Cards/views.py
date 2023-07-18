@@ -11,8 +11,10 @@ from Cards.forms import CourseForm, FeesStructureForm, TuitionPaymentForm, Stude
 from Cards.models import FeesStructure, TuitionPayment, Student, Course, Card, Clearance
 from django.contrib import messages
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from Cards.utils import render_to_pdf 
+from .models import Card
+from django.shortcuts import render
 
 import sqlite3
 
@@ -90,6 +92,25 @@ def add_student_view(request):
 
     return render(request, "add_student.html", context)
 
+'''
+def student_details(request, barcode):
+
+    try:
+        student =Student.objects.get(barcode=barcode)
+
+    except Student.DoesNotExist:
+        return JsonResponse({'error':'Invalid Barcode Entry'})
+    
+    data = {
+        "name": student.student_name,
+        "course": student.course,
+        "barcode":student.barcode
+
+    }
+
+    return JsonResponse(data)
+    
+'''
 def edit_student_view(request, student_id):
     message = ''
     student  = Student.objects.get(id = student_id)
@@ -450,3 +471,6 @@ def search_views(request):
 
 
 
+def display(request):
+    cards=Card.objects.all()
+    return render(request,'display.html',{'card':cards})
